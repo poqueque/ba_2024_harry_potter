@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:harry_potter/models/character.dart';
 
-class Harry extends StatelessWidget {
-  const Harry({super.key});
+class CharacterDetail extends StatelessWidget {
+  const CharacterDetail({super.key, required this.character});
+
+  final Character character;
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Harry Potter App"),
-          backgroundColor: Colors.deepPurpleAccent.shade100,
-          centerTitle: true,
+          title: Text("${character.name} details"),
         ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.network(
-                "https://static.wikia.nocookie.net/esharrypotter/images/8/8d/PromoHP7_Harry_Potter.jpg/revision/latest?cb=20160903184919",
-                height: height * 0.5,
+              Hero(
+                tag: character.name,
+                child: Image.network(
+                  character.imageUrl,
+                  height: height * 0.5,
+                ),
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,35 +40,35 @@ class Harry extends StatelessWidget {
                   Text("89 reviews"),
                 ],
               ),
-              const Text(
-                "Harry Potter",
-                style: TextStyle(
+              Text(
+                character.name,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 32,
                 ),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
-                      Icon(Icons.fitness_center),
-                      Text("Força"),
-                      Text("9"),
+                      const Icon(Icons.fitness_center),
+                      const Text("Força"),
+                      Text(character.strength.toString()),
                     ],
                   ),
                   Column(
                     children: [
-                      Icon(Icons.auto_fix_high),
-                      Text("Màgia"),
-                      Text("10"),
+                      const Icon(Icons.auto_fix_high),
+                      const Text("Màgia"),
+                      Text(character.magic.toString()),
                     ],
                   ),
                   Column(
                     children: [
-                      Icon(Icons.speed),
-                      Text("Velocitat"),
-                      Text("8"),
+                      const Icon(Icons.speed),
+                      const Text("Velocitat"),
+                      Text(character.speed.toString()),
                     ],
                   ),
                 ],
