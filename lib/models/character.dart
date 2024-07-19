@@ -4,6 +4,9 @@ class Character {
   final int strength;
   final int magic;
   final int speed;
+  int totalReviews = 0;
+  int totalStars = 0;
+  int get averageStars => (totalReviews == 0) ? 0 : totalStars ~/ totalReviews;
 
   Character(
     this.name,
